@@ -1,0 +1,165 @@
+{% extends 'partial/_baseview2.html' %}
+{% load static %}
+
+{% block title %}
+{% if "student"  in request.path%}مدیریت|دانش آموزان
+{% elif "achievement" in request.path %}مدیریت|دست آورد ها 
+{% else %}مدیدیت{% endif %}
+{% endblock title %}
+
+{% block content %}
+
+    <!-- BEGIN LOEADING -->
+    <div id="loader">
+        <div class="spinner"></div>
+    </div><!-- /loader -->
+    <!-- END LOEADING -->
+    
+    <!-- BEGIN HEADER -->
+    {% include "partial/header.html" %}
+    <!-- END HEADER -->
+
+    {% include "partial/messages.html" %}
+    
+    <!-- BEGIN WRAPPER -->
+    {% include "partial/start_manage.html" %}
+    
+
+    {% if 'index' in request.path %}
+    
+    {% elif 'student' in request.path %}
+    <table class="table">
+        <thead>
+            <tr>
+            <th> تصویر </th>
+            <th> نام </th>
+            <th> نام خانوادگی </th>
+            <th> تاریخ تولد </th>
+            </tr>
+        </thead>
+        <thead>
+            <form action="" method="post">
+                {% csrf_token %} 
+            <th> <input class="btn btn-primary" type="submit" value=" جست و جو"> </th>
+            <th> <input class="form-control" type="search" name="first_name"> </th>
+            <th> <input class="form-control" type="search" name="last_name"> </th>
+            <th> <input class="form-control" type="search" name="birthday"> </th>
+            </form>
+        </thead>
+        <tbody>
+            {% for st in student %}
+            <tr>
+            <th><img src="{{ st.photo.url }}" alt=""></th>
+            <th>{{st.first_name}}</th>
+            <th>{{st.last_name}}</th>
+            <th>{{st.birthday}}</th>
+            <th><th> <a class="btn btn-primary" href="{% url 'base:form' 'student' st.id %}"> ویرایش </a> </th></th>
+            <th><th> <a onclick="return confirm(' این رکورد حذف خواهد شد،ادامه؟')" class="btn btn-danger" href="{% url 'base:delete' 'student' st.id %}"> حذف </a> </th></th>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <form action="{% url 'base:form' 'new_student' 0 %}" method="get">
+        <input class="btn btn-primary" type="submit" value=" ثبت رکورد جدید ">
+    </form>
+    {% elif 'confirm_achievement' in request.path %}
+    {% comment %} to dooooooooooooooooooooo confirm deny {% endcomment %}
+    <table class="table">
+        <thead>
+            <tr>
+                <th> مقام آورنده </th>
+                <th> عنوان افتخار </th>
+                <th> سال افتخار </th>
+                <th> سطح </th>
+                <th> دسته بندی </th>
+                <th> دوره </th>
+                <th> تصویر مدرک </th>
+                <th> لینک ها  </th>
+                <th> توضیحات  </th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for ar in achievement %}
+            <tr>
+                <th>{{ar.owner.first_name}} {{ar.owner.last_name}}</th>
+                <th>{{ar.title}}</th>
+                <th>{{ar.year}}</th>
+                <th>{{ar.level}}</th>
+                <th>{{ar.field}}</th>
+                <th>{{ar.dore}}</th>
+                {% if ar.pic %}<th><img src="{{ar.pic.url}}" alt=""></th>{% else %}<th> بارگذاری نشده </th>{% endif %}
+                {% if ar.video_link %}<th>{{ar.video_link}}</th>{% else %}<th> وارد نشده </th>{% endif %}
+                {% if ar.detail %}<th>{{ar.detail}}</th>{% else %}<th> وارد نشده </th>{% endif %}
+
+                <th> {% if ar.refrence_id == 0 %}<label class="label-success round">درخواست جدید</label> 
+                {% elif ar.is_deleted %}<label class="label-danger round">درخواست حذف</label>
+                {% else %}<label class="label-success round">درخواست ویرایش</label>{% endif %} </th>
+                <th><th> <a href="{% url 'base:confirm_deny' 'achievement_confirm' ar.refrence_id ar.id%}"
+                            onclick="return confirm(' تغییرات تایید خواهند شد،ادامه؟')" class="btn btn-primary" 
+                            role="button"> تایید تغییرات </a> </th></th>
+                <th><th> <a href="{% url 'base:confirm_deny' 'achievement_deny' ar.refrence_id ar.id%}"
+                            onclick="return confirm(' تغییرات رد خواهند شد،ادامه؟')" class="btn btn-danger" 
+                            role="button" > رد تغییرات </a> </th></th>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% elif 'achievement' in request.path %}
+    <table class="table">
+        <thead>
+            <tr>
+                <th> مقام آورنده </th>
+                <th> عنوان افتخار </th>
+                <th> سال افتخار </th>
+                <th> سطح </th>
+                <th> دسته بندی </th>
+                <th> دوره </th>
+                <th> تصویر مدرک </th>
+                <th> لینک ها  </th>
+                <th> توضیحات  </th>
+            </tr>
+        </thead>
+        <thead>
+            <form action="" method="post">
+                {% csrf_token %} 
+                <th> <input class="form-control" type="search" name="owner"> </th>
+                <th> <input class="form-control" type="search" name="title"> </th>
+                <th> <input class="form-control" type="search" name="year"> </th>
+                <th> <input class="form-control" type="search" name="level"> </th>
+                <th> <input class="form-control" type="search" name="field"> </th>
+                <th> <input class="form-control" type="search" name="dore"> </th>
+                <th>  </th>
+                <th> <input class="form-control" type="search" name="video_link"> </th>
+                <th> <input class="form-control" type="search" name="detail"> </th>
+                <th> <input class="btn btn-primary" type="submit" value=" جست و جو"> </th>
+            </form>
+        </thead>
+        <tbody>
+            {% for ar in achievement %}
+            <tr>
+                <th>{{ar.owner.first_name}} {{ar.owner.last_name}}</th>
+                <th>{{ar.title}}</th>
+                <th>{{ar.year}}</th>
+                <th>{{ar.level}}</th>
+                <th>{{ar.field}}</th>
+                <th>{{ar.dore}}</th>
+                {% if ar.pic %}<th><img src="{{ar.pic.url}}" alt=""></th>{% else %}<th> بارگذاری نشده </th>{% endif %}
+                {% if ar.video_link %}<th>{{ar.video_link}}</th>{% else %}<th> وارد نشده </th>{% endif %}
+                {% if ar.detail %}<th>{{ar.detail}}</th>{% else %}<th> وارد نشده </th>{% endif %}
+                <th><th> <a class="btn btn-primary" role="button" href="{% url 'base:form' 'achievement' ar.refrence_id %}"> ویرایش </a> </th></th>
+                <th><th> <a onclick="return confirm(' این رکورد حذف خواهد شد،ادامه؟')" class="btn btn-danger" role="button" href="{% url 'base:delete' 'achievement' ar.refrence_id %}"> حذف </a> </th></th>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+<form action="{% url 'base:form' 'new_achievement' 0 %}" method="get">
+    <input type="submit" class="btn btn-primary" value=" ثبت رکورد جدید ">
+</form>
+    {% endif %}
+
+    {% include "partial/end_manage.html" %}
+
+    <!-- BEGIN FOOTER -->
+    {% include "partial/footer.html" %}
+    <!-- END FOOTER -->
+{% endblock content %}

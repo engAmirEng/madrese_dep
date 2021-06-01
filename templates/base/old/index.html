@@ -1,0 +1,43 @@
+{% extends '../partial/simpleBootstrap.html' %}
+{% block content %}
+<table>
+    <thead>
+        <form action="" method="post">
+            {% csrf_token %} 
+        <tr>
+        <th> <input class="btn btn-primary" type="submit" value=" جست و جو"> </th>
+        <th> <input class="form-control" type="search" name="first_name"> </th>
+        <th> <input class="form-control" type="search" name="last_name"> </th>
+        <th> <input class="form-control" type="search" name="title"> </th>
+        <th> <input class="form-control" type="search" name="year"> </th>
+        <th> <input class="form-control" type="search" name="level"> </th>
+        </tr>
+        </form>
+    </thead>
+    <thead>
+        <tr>
+        <th> تصویر </th>
+        <th> نام </th>
+        <th> نام خانوادگی </th>
+        <th> عنوان افتخار </th>
+        <th> سال افتخار </th>
+        <th> سطح </th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for ar in achievement %}
+        <tr>
+        <th><img src="{{ ar.owner.photo.url }}" alt=""></th>
+        <th>{{ ar.owner.first_name }}</th>
+        <th>{{ ar.owner.last_name }}</th>
+        <th>{{ ar.title }}</th>
+        <th>{{ ar.year }}</th>
+        <th>{{ ar.level }}</th>
+        <th> <a class="btn btn-info" role="button" href="{% url 'base:detail' ar.id %}"> بیشتر </a> </th>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+<br> <br>
+<a href="{% url 'base:manage' 'index' %}"><button class="btn btn-primary" role="button"><h2> پنل مدیریت </h2></button></a>
+{% endblock content %}

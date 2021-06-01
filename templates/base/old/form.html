@@ -1,0 +1,289 @@
+{% extends 'partial/_baseview2.html' %}
+{% load static %}
+{% block content %}
+
+    <!-- BEGIN LOEADING -->
+    <div id="loader">
+        <div class="spinner"></div>
+    </div><!-- /loader -->
+    <!-- END LOEADING -->
+    
+    <!-- BEGIN HEADER -->
+    {% include "partial/header.html" %}
+    <!-- END HEADER -->
+    
+    <!-- BEGIN WRAPPER -->
+    <div id="wrapper">
+        <!-- BEGIN PAGE CONTENT -->
+        <div id="page-content">
+            <div class="row">                    
+                <!-- BEGIN BREADCRUMB -->
+                <div class="col-md-12">
+                    <div class="breadcrumb-box border shadow"> 
+                        <ul class="breadcrumb">
+                            <li><a href="dashboard.html">پیشخوان</a></li>
+                            <li><a href="#">فرم ها</a></li>                                
+                            <li class="active">فرم ها</li>                            
+                        </ul>
+                        <div class="breadcrumb-left">
+                            سه شنبه، 1400/01/10                                
+                            <i class="icon-calendar"></i>
+                        </div><!-- /.breadcrumb-left -->
+                    </div><!-- /.breadcrumb-box -->
+                </div><!-- /.col-md-12 -->
+                <!-- END BREADCRUMB -->                    
+                
+                <div class="col-lg-6">
+                    <div class="portlet box border shadow">
+                        <div class="portlet-heading">
+                            <div class="portlet-title">
+                                <h3 class="title">                                        
+                                    <i class="icon-settings"></i>
+                                    فرم  Horizontal
+                                </h3>
+                            </div><!-- /.portlet-title -->
+                            <div class="buttons-box">
+                                <a class="btn btn-sm btn-default btn-round btn-fullscreen" rel="tooltip" title="تمام صفحه" href="#">
+                                    <i class="icon-size-fullscreen"></i>
+                                </a>
+                                <a class="btn btn-sm btn-default btn-round btn-collapse" rel="tooltip" title="کوچک کردن" href="#">
+                                    <i class="icon-arrow-up"></i>
+                                </a>
+                            </div><!-- /.buttons-box -->
+                        </div><!-- /.portlet-heading -->
+                        <div class="portlet-body">
+                            <form role="form">
+                                <div class="form-body">
+                                    <div class="form-group">
+                                        <label>نام</label>
+                                        <div class="input-group">
+                                            <span class="input-group-addon">
+                                                <i class="icon-user"></i>
+                                            </span>
+                                            <input type="text" class="form-control" placeholder="نام">
+                                        </div><!-- /.input-group -->
+                                    </div><!-- /.form-group -->
+                                    <div class="form-group">
+                                        <label>رمز عبور</label>
+                                        <div class="input-group">
+                                            <span class="input-group-addon">
+                                                <i class="icon-key"></i>
+                                            </span>
+                                            <input type="password" class="form-control">
+                                        </div><!-- /.input-group -->
+                                    </div><!-- /.form-group -->
+                                    <div class="form-group">
+                                        <label>رایانامه(ایمیل) به صورت چپ چین</label>
+                                        <div class="input-group">
+                                            <span class="input-group-addon">
+                                                <i class="icon-envelope"></i>
+                                            </span>
+                                            <input type="email" class="form-control ltr text-left">
+                                        </div><!-- /.input-group -->
+                                    </div><!-- /.form-group -->
+                                    <div class="form-group">
+                                        <label>گیرنده</label>
+                                        <div class="input-group">
+                                            <span class="input-group-addon">
+                                                <i class="icon-options"></i>
+                                            </span>
+                                            <select class="form-control">
+                                                <option value="0">بخش فنی</option>
+                                                <option value="1">بخش مالی</option>
+                                                <option value="2">بخش اداری</option>
+                                                <option value="3">بخش فروش</option>
+                                                <option value="4">اپراتور</option>
+                                            </select>
+                                        </div><!-- /.input-group -->
+                                    </div><!-- /.form-group -->
+                                    <div class="form-group">
+                                        <label>نشانی</label>
+                                        <div class="input-group">
+                                            <span class="input-group-addon">
+                                                <i class="icon-location-pin"></i>
+                                            </span>
+                                            <textarea class="form-control" rows="5" placeholder="نشانی"></textarea>
+                                        </div><!-- /.input-group -->
+                                    </div><!-- /.form-group -->
+                                    <div class="form-group">
+                                        <label>غیر فعال disable</label>
+                                        <div class="input-group">
+                                            <span class="input-group-addon">
+                                                <i class="icon-ban"></i>
+                                            </span>
+                                            <input type="text" class="form-control" placeholder="غیر فعال" disabled> 
+                                        </div><!-- /.input-group -->
+                                    </div><!-- /.form-group -->
+
+
+                                    <div class="form-group">
+                                        <label>با کادر منحنی و کلاس curve </label>
+                                        <div class="input-group curve">
+                                            <span class="input-group-addon">
+                                                <i class="icon-screen-desktop"></i>
+                                            </span>
+                                            <input type="text" class="form-control" placeholder="با کادر منحنی">
+                                        </div><!-- /.input-group -->
+                                    </div><!-- /.form-group -->
+                                    <div class="form-group">
+                                        <label>با کادر گرد  و کلاس round</label>
+                                        <div class="input-group round">
+                                            <span class="input-group-addon">
+                                                <i class="icon-speedometer"></i>
+                                            </span>
+                                            <input type="text" class="form-control" placeholder="با کادر گرد">
+                                        </div><!-- /.input-group -->
+                                    </div><!-- /.form-group -->
+                                    <div class="form-group round">
+                                        <label>بدون آیکن با کادر گرد</label>
+                                        <input type="text" class="form-control" placeholder="با کادر گرد">
+                                    </div><!-- /.form-group -->
+                                    <div class="form-group curve">
+                                        <label>بدون آیکن با کادر منحنی</label>
+                                        <input type="text" class="form-control" placeholder="با کادر منحنی">
+                                    </div><!-- /.form-group -->
+
+                                    <div class="form-group">
+                                        <label>با آیکن Font Awesome</label>
+                                        <div class="input-group">
+                                            <span class="input-group-addon">
+                                                <i class="fa fa-user"></i>
+                                            </span>
+                                            <input type="text" class="form-control" placeholder="نام خانوادگی">
+                                        </div><!-- /.input-group -->
+                                    </div><!-- /.form-group -->
+                                    <div class="form-group">
+                                        <label>با آیکن قرمز</label>
+                                        <div class="input-group">
+                                            <span class="input-group-addon">
+                                                <i class="fa fa-user text-danger"></i>
+                                            </span>
+                                            <input type="text" class="form-control" placeholder="نام خانوادگی">
+                                        </div><!-- /.input-group -->
+                                    </div><!-- /.form-group -->
+                                    <div class="form-group">
+                                        <label>با آیکن سبز</label>
+                                        <div class="input-group">
+                                            <span class="input-group-addon">
+                                                <i class="fa fa-user text-success"></i>
+                                            </span>
+                                            <input type="text" class="form-control" placeholder="نام خانوادگی">
+                                        </div><!-- /.input-group -->
+                                    </div><!-- /.form-group -->
+                                    <div class="form-group">
+                                        <label>کاملا چپ چین</label>
+                                        <div class="input-group">
+                                            <input type="text" class="form-control ltr text-left" placeholder="چپ چین">
+                                            <span class="input-group-addon ltr">
+                                                <i class="icon-list"></i>
+                                            </span>
+                                        </div><!-- /.input-group -->
+                                    </div><!-- /.form-group -->
+                                    <div class="form-group relative">
+                                        <input type="file" class="form-control"> 
+                                        <label>آپلود فایل</label>
+                                        <div class="input-group round"> 
+                                            <input type="text" class="form-control file-input" placeholder="برای آپلود کلیک کنید"> 
+                                            <span class="input-group-btn input-group-sm"> 
+                                                <button type="button" class="btn btn-info"> 
+                                                    <i class="icon-picture"></i>
+                                                    آپلود عکس
+                                                </button>
+                                            </span> 
+                                        </div><!-- /.input-group -->
+                                        <div class="help-block"></div>
+                                    </div><!-- /.form-group -->
+                                </div><!-- /.form-body -->
+
+                                <div class="form-actions">
+                                    <button type="submit" class="btn btn-info btn-round">
+                                        <i class="icon-check"></i>
+                                        ذخیره
+                                    </button>
+                                    <button type="button" class="btn btn-warning btn-round">
+                                        بازگشت
+                                        <i class="icon-close"></i>
+                                    </button>
+                                </div><!-- /.form-actions -->
+                            </form>
+                        </div><!-- /.portlet-body -->
+                    </div><!-- /.portlet -->
+                </div><!-- /.col-lg-6 -->
+            </div><!-- /.row -->
+        </div><!-- /#page-content -->
+        <!-- END PAGE CONTENT -->
+    </div><!-- /#wrapper -->
+    <!-- END WRAPPER -->
+
+    <!-- BEGIN FOOTER -->
+    {% include "partial/footer.html" %}
+    <!-- END FOOTER -->
+
+    <!-- BEGIN SETTING -->
+    <div class="settings d-none d-sm-block">
+        <a href="#" class="btn" id="toggle-setting">
+            <i class="icon-settings"></i>
+        </a>
+        <h3 class="text-center">تنظیمات</h3>
+        
+        <div class="fix-header-box">
+            <p class="h6">
+                هدر ثابت: 
+                <span class="pull-left">
+                    <input type="checkbox" class="fix-header-switch normal" checked>
+                </span>
+            </p>
+        </div><!-- /.fix-header-box -->
+        <hr class="light">
+        <div class="toggle-sidebar-box">
+            <p class="h6">
+                جمع کردن سایدبار: 
+                <span class="pull-left">
+                    <input type="checkbox" class="toggle-sidebar-switch normal">
+                </span>
+            </p>
+        </div><!-- /.toggle-sidebar-box -->
+        <hr class="light">
+        <div class="toggle-sidebar-box">
+            <p class="h6">
+                سایدبار خلاقانه: 
+                <span class="pull-left">
+                    <input type="checkbox" class="creative-sidebar-switch normal">
+                </span>
+            </p>
+        </div><!-- /.toggle-sidebar-box -->
+        <hr class="light">
+        <div class="theme-colors">
+            <p class="h6">رنگ قالب : </p>
+            <a class="btn btn-round btn-blue ripple-effect active" data-color="blue"></a>
+            <a class="btn btn-round btn-red ripple-effect" data-color="red"></a>
+            <a class="btn btn-round btn-green ripple-effect" data-color="green"></a>
+            <a class="btn btn-round btn-orange ripple-effect" data-color="orange"></a>
+            <a class="btn btn-round btn-purple ripple-effect" data-color="purple"></a>
+            <a class="btn btn-round btn-deeporange ripple-effect" data-color="deeporange"></a>
+            <a class="btn btn-round btn-cyan ripple-effect" data-color="cyan"></a>
+            <a class="btn btn-round btn-rose ripple-effect" data-color="rose"></a>
+            <a class="btn btn-round btn-lime ripple-effect" data-color="lime"></a>
+            <a class="btn btn-round btn-darkorange ripple-effect" data-color="darkorange"></a>
+        </div><!-- /.theme-colors -->
+        <div class="theme-code ltr text-left">
+            <code></code>
+        </div><!-- /.theme-code -->
+    </div><!-- /.settings -->
+    <!-- END SETTING -->
+    
+    <!-- BEGIN CODE MODAL -->
+    <div class="modal fade" id="code-modal" role="dialog">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="btn btn-default btn-round btn-icon pull-right" id="btn-copy"><i class="fa fa-copy"></i></button>
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title">کپی کردن کدها</h4>
+                </div>
+                <div class="modal-body"></div>
+            </div> <!-- /.modal-content -->
+        </div> <!-- /.modal-dialog -->
+    </div> <!-- /.modal -->
+    <!-- END CODE MODAL -->
+{% endblock content %}

@@ -1,0 +1,17 @@
+{% extends '../partial/simpleBootstrap.html' %}
+{% block content %}
+
+{% if massage %}
+<h1>{{massage}}</h1>
+{% endif %}
+{% if form %}
+<div class="input-group mb-3">
+<form action="" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{form.as_p}}
+    <input class="btn btn-primary" type="submit" value=" اعمال تغییرات">
+</form>
+</div>
+{% endif %}
+
+{% endblock content %}

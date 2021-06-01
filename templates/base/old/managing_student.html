@@ -1,0 +1,45 @@
+{% extends '../partial/simpleBootstrap.html' %}
+{% block content %}
+<h1> managing students</h1>
+<form action="" method="post">
+{% csrf_token %}
+<th> <input class="btn btn-primary" type="submit" value=" جست و جو"> </th>
+<table>
+    <thead>
+        <tr>
+            <th> نام </th>
+            <th> نام خانوادگی </th>
+            <th> تاریخ تولد </th>
+            <th> تصویر </th>
+        </tr>
+    </thead>
+    <thead>
+        <th> <input class="form-control" type="search" name="first_name"> </th>
+        <th> <input class="form-control" type="search" name="last_name"> </th>
+        <th> <input class="form-control" type="search" name="birthday"> </th>
+</form>
+    </thead>
+    <tbody>
+        {% for st in student %}
+        <tr>
+            <th>{{st.first_name}} {{ar.owner.last_name}}</th>
+            <th>{{st.last_name}}</th>
+            <th>{{st.birthday}}</th>
+            <th><img src="{{ st.photo.url }}" alt=""></th>
+            <th><th> <a class="btn btn-primary" href="{% url 'base:form' 'student' st.id %}"> ویرایش </a> </th></th>
+            <th><th> <a onclick="return confirm(' این رکورد حذف خواهد شد،ادامه؟')" class="btn btn-danger" href="{% url 'base:delete' 'student' st.id %}"> حذف </a> </th></th>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+<br> <br>
+<form action="{% url 'base:form' 'new_student' 0 %}" method="get">
+    <input class="btn btn-primary" type="submit" value=" ثبت رکورد جدید ">
+</form>
+<script>
+    var el_up = document.getElementById("GFG_UP");
+        
+    el_up.innerHTML = 
+        "Click on the LINK for further confirmation."; 
+</script>
+{% endblock content %}

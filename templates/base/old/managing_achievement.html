@@ -1,0 +1,62 @@
+{% extends '../partial/simpleBootstrap.html' %}
+{% block content %}
+<h1> managing achievements </h1>
+<form action="" method="post">
+{% csrf_token %}
+<th> <input type="submit" class="btn btn-primary" value=" جست و جو"> </th>
+<table>
+    <thead>
+        <tr>
+            <th> مقام آورنده </th>
+            <th> عنوان افتخار </th>
+            <th> سال افتخار </th>
+            <th> سطح </th>
+            <th> دسته بندی </th>
+            <th> دوره </th>
+            <th> تصویر مدرک </th>
+            <th> لینک ها  </th>
+            <th> توضیحات  </th>
+        </tr>
+    </thead>
+    <thead>
+        <th> <input class="form-control" type="search" name="owner"> </th>
+        <th> <input class="form-control" type="search" name="title"> </th>
+        <th> <input class="form-control" type="search" name="year"> </th>
+        <th> <input class="form-control" type="search" name="level"> </th>
+        <th> <input class="form-control" type="search" name="field"> </th>
+        <th> <input class="form-control" type="search" name="dore"> </th>
+        <th>  </th>
+        <th> <input class="form-control" type="search" name="video_link"> </th>
+        <th> <input class="form-control" type="search" name="detail"> </th>
+</form>
+    </thead>
+    <tbody>
+        {% for ar in achievement %}
+        <tr>
+            <th>{{ar.owner.first_name}} {{ar.owner.last_name}}</th>
+            <th>{{ar.title}}</th>
+            <th>{{ar.year}}</th>
+            <th>{{ar.level}}</th>
+            <th>{{ar.field}}</th>
+            <th>{{ar.dore}}</th>
+            {% if ar.pic %}<th><img src="{{ar.pic.url}}" alt=""></th>{% else %}<th> بارگذاری نشده </th>{% endif %}
+            {% if ar.video_link %}<th>{{ar.video_link}}</th>{% else %}<th> وارد نشده </th>{% endif %}
+            {% if ar.detail %}<th>{{ar.detail}}</th>{% else %}<th> وارد نشده </th>{% endif %}
+            <th><th> <a class="btn btn-primary" role="button" href="{% url 'base:form' 'achievement' ar.id %}"> ویرایش </a> </th></th>
+            <th><th> <a onclick="return confirm(' این رکورد حذف خواهد شد،ادامه؟')" class="btn btn-danger" role="button" href="{% url 'base:delete' 'achievement' ar.id %}"> حذف </a> </th></th>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+<br> <br>
+<form action="{% url 'base:form' 'new_achievement' 0 %}" method="get">
+    <input type="submit" class="btn btn-primary" value=" ثبت رکورد جدید ">
+</form>
+
+<script>
+    var el_up = document.getElementById("GFG_UP");
+        
+    el_up.innerHTML = 
+        "Click on the LINK for further confirmation."; 
+</script> 
+{% endblock content %}
